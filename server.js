@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 3000 || process.env.PORT;
+const ip_address = "0.0.0.0";
 const nodemailer = require("nodemailer");
 // const mongodb = require("mongodb").MongoClient;
 // const url = "mongodb://localhost:27017/";
@@ -19,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(port, () => {
+app.listen(port, ip_address, () => {
   console.log(`server is running on port ${port}`);
 });
 
@@ -91,7 +92,7 @@ var managerData = {
   response: true,
 };
 
-app.post("/restPam1", (req, res) => {
+app.post("/restPam", (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
   // console.log(username);
@@ -144,7 +145,7 @@ app.post("/postUrl", (req, res) => {
   res.send(data);
 });
 
-app.post("/restPam", (req, res) => {
+app.post("/restPam1", (req, res) => {
   var id = req.body.id;
   var applicantData = {
     id: id,
