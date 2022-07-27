@@ -183,10 +183,13 @@
 // });
 
 const http = require("http");
+require("dotenv").config();
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
-  res.end("<h1>Hi, This is My own Node JS Application!</h1>");
+  res.end(
+    `<h1>Hi, This is My own Node JS Application! ${process.env.name}</h1>`
+  );
 });
 
 server.listen(3000, () => {
